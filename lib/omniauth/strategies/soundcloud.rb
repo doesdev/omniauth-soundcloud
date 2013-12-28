@@ -77,15 +77,15 @@ module OmniAuth
       end
 
       def image_url(options)
+        valid = ["t500x500","crop","t300x300","large","badge","small","tiny","mini"]
         image_url = raw_info['avatar_url'].to_s
-        image_size = options[:image_size] || nil
-        if image_size.nil? || image_size.downcase == 'original'
-          image_url
-        else
+        image_size = options[:image_size].to_s
+        if valid.include?(image_size)
           image_url.sub("large.jpg", "#{image_size}.jpg")
+        else
+          image_url
         end
       end
-
     end
   end
 end
