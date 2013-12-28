@@ -24,7 +24,7 @@ module OmniAuth
         prune!({
           'nickname' => raw_info['username'],
           'name' => raw_info['full_name'],
-          'image' => raw_info['avatar_url'],
+          'image' => image_url(options),
           'description' => raw_info['description'],
           'urls' => {
             'Website' => raw_info['website']
@@ -75,6 +75,17 @@ module OmniAuth
           value.nil? || (value.respond_to?(:empty?) && value.empty?)
         end
       end
+
+      def image_url(options)
+        image_url = raw_info['avatar_url'].to_s
+        image_size = options[:image_size] || nil
+        if image_size.nil? || image_size.downcase == 'original'
+          image_url
+        else
+          image_url.sub("large.jpg", "#{image_size}.jpg")
+        end
+      end
+
     end
   end
 end

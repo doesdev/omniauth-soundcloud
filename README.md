@@ -66,6 +66,24 @@ Here's an example *Auth Hash* available in `request.env['omniauth.auth']`:
 }
 ```
 
+## Avatar Size
+
+Set the size of the returned image using the `image_size` option in the `provider` method as below.
+
+    provider :soundcloud, ENV['SOUNDCLOUD_KEY'], ENV['SOUNDCLOUD_SECRET'], :image_size => 't500x500'
+
+Valid options are:
+
+* `"t500x500"`:     500×500
+* `"crop"`:         400×400
+* `"t300x300"`:     300×300
+* `"large"`:        100×100 (default)
+* `"badge"`:        47×47
+* `"small"`:        32×32
+* `"tiny"`:         18×18
+* `"mini"`:         16×16
+
+
 ## License
 
 Copyright (c) 2011 by Lee Martin and SoundCloud
